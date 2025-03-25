@@ -1,0 +1,74 @@
+- title: "性别修改为男-成功"
+  sex: "男"
+  success: True
+  error: None
+
+- title: "性别修改为女-成功"
+  sex: "女"
+  success: True
+  error: None
+
+- title: "性别修改为空-失败"
+  sex: ""
+  success: False
+  error: "性别不能为空"
+
+- title: "性别修改为空格-失败"
+  sex: " "
+  success: False
+  error: "性别只能是男或女"
+
+- title: "性别修改为非男非女-失败"
+  sex: "man123"
+  success: False
+  error: "性别只能是男或女"
+
+- title: "修改手机号1开头的11位数字-成功"
+  tel: "15900159001"
+  success: True
+  error: None
+
+- title: "修改手机号为非1开头-失败"
+  tel: "01590015900"
+  success: False
+  error: "手机号格式不正确"
+
+- title: "修改手机号为非11位-失败"
+  tel: "1590015900"
+  success: False
+  error: "手机号格式不正确"
+
+- title: "修改手机号为非数字-失败"
+  tel: "15900159abc"
+  success: False
+  error: "手机号格式不正确"
+
+- title: "修改手机号为空格-失败"
+  tel: " "
+  success: False
+  error: "手机号格式不正确"
+
+- title: "修改手机号为空-失败"
+  tel: ""
+  success: False
+  error: "手机号不能为空"
+
+- title: "修改邮箱为合法邮箱-成功"
+  email: "test123@example.com"
+  success: True
+  error: None
+
+- title: "修改邮箱为不合法邮箱-失败"
+  email: "test123"
+  success: False
+  error: "邮箱格式不正确"
+
+- title: "修改邮箱为空格-失败"
+  email: " "
+  success: False
+  error: "邮箱格式不正确"
+
+- title: "修改邮箱为空-失败"
+  email: ""
+  success: False
+  error: "邮箱不能为空"

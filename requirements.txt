@@ -1,0 +1,5 @@
+selenium>=4.29.0
+PyYAML>=6.0.2
+pytest>=8.3.5
+PyMySQL>=1.1.1
+DBUtils>=3.1.0

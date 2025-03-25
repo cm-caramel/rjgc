@@ -1,0 +1,59 @@
+- title: "登录成功-超管"
+  school: "东莞理工学院"
+  user: "10010"
+  pwd: "123"
+  success: True
+
+- title: "登录成功-学管"
+  school: "东莞理工学院"
+  user: "10020"
+  pwd: "123"
+  success: True
+
+- title: "登录成功-教师"
+  school: "东莞理工学院"
+  user: "10030"
+  pwd: "123"
+  success: True
+
+- title: "登录成功-学生"
+  school: "东莞理工学院"
+  user: "10040"
+  pwd: "123"
+  success: True
+
+- title: "登录失败-学校为空"
+  school: ""
+  user: "10010"
+  pwd: "123"
+  success: False
+
+- title: "登录失败-用户名为空"
+  school: "东莞理工学院"
+  user: ""
+  pwd: "123"
+  success: False
+
+- title: "登录失败-密码为空"
+  school: "东莞理工学院"
+  user: "10010"
+  pwd: ""
+  success: False
+
+- title: "登录失败-学校错误"
+  school: "湖南大学"
+  user: "10010"
+  pwd: "123"
+  success: False
+
+- title: "登录失败-用户名错误"
+  school: "东莞理工学院"
+  user: "10100"
+  pwd: "123"
+  success: False
+
+- title: "登录失败-密码错误"
+  school: "东莞理工学院"
+  user: "10010"
+  pwd: "1234"
+  success: False

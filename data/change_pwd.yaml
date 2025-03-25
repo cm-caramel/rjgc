@@ -1,0 +1,41 @@
+- title: "修改成功"
+  old: "123"
+  new: "123456"
+  confirm: "123456"
+  success: True
+  msg: "密码修改成功！"
+
+- title: "修改失败-密码未改变"
+  old: "123"
+  new: "123"
+  confirm: "123"
+  success: False
+  msg: "密码未改变！请重新输入！"
+
+- title: "修改失败-两次密码不一致"
+  old: "123"
+  new: "123456"
+  confirm: "1234567"
+  success: False
+  msg: "两次密码不一致！请重新输入！"
+
+- title: "修改失败-原密码错误"
+  old: "1234"
+  new: "123456"
+  confirm: "123456"
+  success: False
+  msg: "原密码错误！请重新输入！"
+
+- title: "修改失败-不输入原密码"
+  old: ""
+  new: "123456"
+  confirm: "123456"
+  success: False
+  msg: "原密码错误！请重新输入！"
+
+- title: "修改失败-不输入新密码和确认密码"
+  old: "123"
+  new: ""
+  confirm: ""
+  success: False
+  msg: "请输入新密码！"
