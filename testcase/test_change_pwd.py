@@ -26,6 +26,7 @@ class TestChangePwd:
         assert res['USER_PASSWORD'] == pwd
 
     @pytest.mark.change_pwd
+    @pytest.mark.parallel
     @pytest.mark.parametrize("datas", read_data_yaml('data/change_pwd.yaml'))
     def test_change_pwd(self, change_pwd_page, db_conn, datas):
         try:
@@ -53,6 +54,7 @@ class TestChangePwd:
                 db_conn.commit()
 
     @pytest.mark.change_pwd
+    @pytest.mark.parallel
     @allure.title('点击返回-取消修改')
     def test_cancel(self, change_pwd_page, db_conn):
         try:
@@ -67,6 +69,7 @@ class TestChangePwd:
             raise e
 
     @pytest.mark.change_pwd
+    @pytest.mark.parallel
     @allure.title('点击外部空白-取消修改')
     def test_outside(self, change_pwd_page, db_conn):
         try:

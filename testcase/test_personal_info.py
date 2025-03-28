@@ -1,4 +1,3 @@
-import pytest
 from page.top_side_bar import TopSideBar
 from common.utils import *
 
@@ -38,6 +37,7 @@ class TestPersonalInfo:
                 assert res['USER_EMAIL'] == email
 
     @pytest.mark.personal_info
+    @pytest.mark.parallel
     @allure.title('校验个人信息')
     def test_review_info(self, personal_info_page, db_conn):
         try:
@@ -63,6 +63,7 @@ class TestPersonalInfo:
             personal_info_page.close_if_open()
 
     @pytest.mark.personal_info
+    @pytest.mark.parallel
     @allure.title('取消修改')
     def test_cancel_edit(self, personal_info_page, db_conn):
         try:
@@ -85,6 +86,7 @@ class TestPersonalInfo:
             personal_info_page.close_if_open()
 
     @pytest.mark.personal_info
+    @pytest.mark.parallel
     @pytest.mark.parametrize("datas", read_data_yaml('data/personal_info.yaml'))
     def test_edit_info(self, personal_info_page, db_conn, datas):
         try:

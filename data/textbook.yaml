@@ -1,0 +1,19 @@
+- title: "成功"
+  textbook_title: "test"
+  textbook_content: "xxx"
+  success: True
+
+- title: "标题为空-失败"
+  textbook_title: ""
+  textbook_content: "xxx"
+  success: False
+
+- title: "内容为空-成功"
+  textbook_title: "test"
+  textbook_content: ""
+  success: True
+
+- title: "标题和内容为空-失败"
+  textbook_title: ""
+  textbook_content: ""
+  success: False

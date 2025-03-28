@@ -6,6 +6,7 @@ from common.utils import *
 @allure.feature('登录')
 class TestLogin:
     @pytest.mark.login
+    @pytest.mark.parallel
     @pytest.mark.parametrize("datas", read_data_yaml('data/login.yaml'))
     def test_login(self, login_page_d, db_conn, datas):
         try:
@@ -46,6 +47,7 @@ class TestLogin:
 
     @allure.title('跳过登录')
     @pytest.mark.login
+    @pytest.mark.parallel
     def test_skip_login(self, login_page_d):
         try:
             allure.dynamic.description('前置条件：\n1. 打开应用，默认进入登录页')
@@ -63,6 +65,7 @@ class TestLogin:
 
     @allure.title('登录后退出重登成功')
     @pytest.mark.login
+    @pytest.mark.parallel
     def test_logout_login_success(self, login_page_d):
         try:
             allure.dynamic.description('前置条件：\n1. 打开应用，默认进入登录页')
@@ -87,6 +90,7 @@ class TestLogin:
 
     @allure.title('登录后退出重登失败')
     @pytest.mark.login
+    @pytest.mark.parallel
     def test_logout_login_fail(self, login_page_d):
         try:
             allure.dynamic.description('前置条件：\n1. 打开应用，默认进入登录页')

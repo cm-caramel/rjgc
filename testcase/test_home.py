@@ -14,6 +14,7 @@ login_account = {
     ], indirect=True)
 class TestHome:
     @pytest.mark.home
+    @pytest.mark.parallel
     @allure.title('点击消息')
     def test_click_msg(self, home_page):
         try:
@@ -25,6 +26,7 @@ class TestHome:
             raise e
 
     @pytest.mark.home
+    @pytest.mark.parallel
     @allure.title('点击待办事项')
     def test_click_task(self, home_page):
         try:
@@ -36,6 +38,7 @@ class TestHome:
             raise e
 
     @pytest.mark.home
+    @pytest.mark.parallel
     @allure.title('点击导入学生用户')
     def test_import_student(self, home_page):
         try:
@@ -47,6 +50,7 @@ class TestHome:
             raise e
 
     @pytest.mark.home
+    @pytest.mark.parallel
     @allure.title('点击导入教师用户')
     def test_import_teacher(self, home_page):
         try:

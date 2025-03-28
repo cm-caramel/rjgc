@@ -1,7 +1,7 @@
 driver_path: 'chromedriver/chromedriver.exe'
 base_url: 'http://localhost/'
 wait_time: 10
-headless: True
+headless: False
 sql_check: True
 mysql_host: 'localhost'
 mysql_port: 3306

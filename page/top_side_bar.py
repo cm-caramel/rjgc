@@ -27,7 +27,7 @@ class TopSideBar(BasePage):
         el.send_keys(text)
 
     @allure.step('点击搜索框左侧放大镜按钮')
-    def clear_search(self):
+    def click_search(self):
         self.find_element(EC.visibility_of_element_located, self.SEARCH_BTN).click()
 
     @allure.step('顶部搜索框输入并回车搜索')
@@ -87,7 +87,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材章节')).click()
-        # return
+        from page.textbook_management.textbook.textbook_page import TextbookPage
+        return TextbookPage(self.driver)
 
     @allure.step('通过左侧栏切换到工具列表')
     def switch_to_tool_list(self):
@@ -103,7 +104,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材资源')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材章节')).click()
-        # return
+        from page.textbook_management.textbook.textbook_page import TextbookPage
+        return TextbookPage(self.driver)
 
     @allure.step('通过左侧栏切换到工具列表（学生）')
     def switch_to_tool_list_stu(self):
@@ -119,7 +121,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('资源审核')).click()
-        # return
+        from page.textbook_management.resource_review.textbook_tool_review_page import TextbookToolReviewPage
+        return TextbookToolReviewPage(self.driver)
 
     @allure.step('通过左侧栏切换到个人项目')
     def switch_to_personal_project(self):
