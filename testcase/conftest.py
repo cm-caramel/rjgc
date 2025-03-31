@@ -118,3 +118,21 @@ def textbook_page(home_page):
     else:
         p = home_page.top_side_bar.switch_to_textbook_chapter()
     yield p
+
+
+@pytest.fixture(scope='function')
+def tool_page_function(home_page_function):
+    if home_page_function.param.get('role') == '学生':
+        p = home_page_function.top_side_bar.switch_to_tool_list_stu()
+    else:
+        p = home_page_function.top_side_bar.switch_to_tool_list()
+    yield p
+
+
+@pytest.fixture(scope='function')
+def tool_page(home_page):
+    if home_page.param.get('role') == '学生':
+        p = home_page.top_side_bar.switch_to_tool_list_stu()
+    else:
+        p = home_page.top_side_bar.switch_to_tool_list()
+    yield p

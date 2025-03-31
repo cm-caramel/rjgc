@@ -13,8 +13,7 @@ class TextbookToolReviewPage(BasePage):
     LEFT_ARROW = (By.XPATH, '//button[@class="el-carousel__arrow el-carousel__arrow--left"]')
     RIGHT_ARROW = (By.XPATH, '//button[@class="el-carousel__arrow el-carousel__arrow--right"]')
     PAGE_SWITCH = (By.XPATH, '//*[@id="app"]//div[contains(@class, "is-active")]//footer//ul/li')
-    RECORDS = (
-    By.XPATH, '//*[@id="app"]//div[contains(@class, "is-active")]//tbody//div[normalize-space(text())]/../..')
+    RECORDS = (By.XPATH, '//*[@id="app"]//div[contains(@class, "is-active")]//tbody//div[normalize-space(text())]/../..')
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -55,7 +54,7 @@ class TextbookToolReviewPage(BasePage):
 
     @allure.step('切换到工具审核页')
     def switch_to_tool_review(self):
-        if self.verify_tool_review_page():
+        if not self.verify_tool_review_page():
             self.click_right_arrow()
 
     @allure.step('切换到表格最后一页')

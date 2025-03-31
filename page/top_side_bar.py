@@ -96,7 +96,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('工具列表')).click()
-        # return
+        from page.textbook_management.tool.tool_page import ToolPage
+        return ToolPage(self.driver)
 
     @allure.step('通过左侧栏切换到教材章节（学生）')
     def switch_to_textbook_chapter_stu(self):
@@ -113,7 +114,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('教材资源')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('工具列表')).click()
-        # return
+        from page.textbook_management.tool.tool_page import ToolPage
+        return ToolPage(self.driver)
 
     @allure.step('通过左侧栏切换到资源审核')
     def switch_to_resource_review(self):

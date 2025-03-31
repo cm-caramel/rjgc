@@ -1,3 +1,4 @@
+import time
 import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -41,6 +42,7 @@ class LoginPage(BasePage):
     @allure.step('选择学校')
     def select_school(self, school_name):
         self.click_school_btn()
+        time.sleep(0.1)
         location = (By.XPATH, f'//span[text()="{school_name}"]')
         self.find_element(EC.visibility_of_element_located, location).click()
 
