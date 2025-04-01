@@ -136,3 +136,12 @@ def tool_page(home_page):
     else:
         p = home_page.top_side_bar.switch_to_tool_list()
     yield p
+
+
+@pytest.fixture(scope='function')
+def user_page(home_page):
+    if home_page.param.get('role') == '教师':
+        p = home_page.top_side_bar.switch_to_student_management()
+    else:
+        p = home_page.top_side_bar.switch_to_user_management()
+    yield p

@@ -4,7 +4,7 @@ from common.utils import *
 
 login_account = {
     "school": "东莞理工学院",
-    "user": "10010",
+    "user": "10020",
     "pwd": "123"
 }
 
@@ -16,12 +16,17 @@ login_account = {
 ], indirect=True)
 class Test01:
     # @pytest.mark.test
-    def test01(self, tool_page):
-        p = tool_page.click_edit_mode().click_edit_btn_by_index(-1)
-        p.input_tool_name('')
-        time.sleep(3)
-        p.click_confirm_btn()
-        rp = tool_page.top_side_bar.switch_to_resource_review()
-        rp.switch_to_tool_review()
-        rp.switch_to_last_page()
-        time.sleep(3)
+    def test01(self, user_page, db_conn):
+        user_page.filter_user_kind('教师')
+        time.sleep(0.1)
+        arr = user_page.get_all_user_kind_in_page()
+        assert len(arr) == 1 and '教师' in arr
+        time.sleep(2)
+
+
+class Test02:
+    # @pytest.mark.test
+    def test02(self):
+        a = ''
+        b = None
+
