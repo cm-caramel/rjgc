@@ -132,7 +132,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('项目管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('个人项目')).click()
-        # return
+        from page.project_management.project_list_page import ProjectListPage
+        return ProjectListPage(self.driver)
 
     @allure.step('通过左侧栏切换到结对编程')
     def switch_to_pair_programming(self):
@@ -140,7 +141,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('项目管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('结对编程')).click()
-        # return
+        from page.project_management.project_list_page import ProjectListPage
+        return ProjectListPage(self.driver)
 
     @allure.step('通过左侧栏切换到团队项目')
     def switch_to_team_project(self):
@@ -148,7 +150,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('项目管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('团队项目')).click()
-        # return
+        from page.project_management.project_list_page import ProjectListPage
+        return ProjectListPage(self.driver)
 
     @allure.step('通过左侧栏切换到项目审核')
     def switch_to_project_review(self):
@@ -156,7 +159,8 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('项目管理')).click()
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('项目审核')).click()
-        # return
+        from page.project_management.project_review_page import ProjectReviewPage
+        return ProjectReviewPage(self.driver)
 
     @allure.step('通过左侧栏切换到课程管理')
     def switch_to_course_management(self):
