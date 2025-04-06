@@ -165,7 +165,8 @@ class TopSideBar(BasePage):
     @allure.step('通过左侧栏切换到课程管理')
     def switch_to_course_management(self):
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('课程管理')).click()
-        # return
+        from page.course_management.course_list_page import CourseListPage
+        return CourseListPage(self.driver)
 
     @allure.step('通过左侧栏切换到用户管理')
     def switch_to_user_management(self):

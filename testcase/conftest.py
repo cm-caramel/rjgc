@@ -145,3 +145,9 @@ def user_page(home_page):
     else:
         p = home_page.top_side_bar.switch_to_user_management()
     yield p
+
+
+@pytest.fixture(scope='function')
+def course_page(home_page):
+    p = home_page.top_side_bar.switch_to_course_management()
+    yield p

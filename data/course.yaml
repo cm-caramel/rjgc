@@ -1,0 +1,30 @@
+- title: "添加成功"
+  name: "添加课程成功"
+  time: "课程时间test"
+  info: "课程信息test"
+  success: True
+
+- title: "失败-课程名为空"
+  name: ""
+  time: "课程时间test"
+  info: "课程信息test"
+  success: False
+
+- title: "失败-课程时间为空"
+  name: "添加课程时间为空"
+  time: ""
+  info: "课程信息test"
+  success: False
+
+- title: "成功-课程信息为空"
+  name: "添加课程信息为空"
+  time: "课程时间test"
+  info: ""
+  success: True
+
+- title: "取消添加"
+  name: "取消添加课程"
+  time: "课程时间test"
+  info: "课程信息test"
+  cancel: True
+  success: False

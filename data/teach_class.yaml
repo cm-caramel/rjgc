@@ -1,0 +1,25 @@
+- title: "添加成功"
+  teach_class: 0
+  name: "添加班级"
+  success: True
+
+- title: "取消添加"
+  teach_class: 0
+  name: "取消添加班级"
+  cancel: True
+  success: False
+
+- title: "失败-名称为空"
+  teach_class: 0
+  name: ""
+  success: False
+
+- title: "成功-选1个行政班"
+  teach_class: 1
+  name: "选择1个行政班"
+  success: True
+
+- title: "成功-选2个行政班"
+  teach_class: 2
+  name: "选择2个行政班"
+  success: True
