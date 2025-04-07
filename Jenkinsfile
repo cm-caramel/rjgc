@@ -21,11 +21,11 @@ pipeline {
         stage('Run Tests with Pytest') {
             steps {
                 script {
-					bat '''
-						call %VENV_DIR%\\Scripts\\activate
-						pytest -m "login" -n 3 --alluredir=%ALLURE_RESULTS% --clean-alluredir
-						pytest -m "personal_info" --alluredir=%ALLURE_RESULTS%
-					'''
+                    bat '''
+                        call %VENV_DIR%\\Scripts\\activate
+                        pytest -m "login" -n 3 --alluredir=%ALLURE_RESULTS% --clean-alluredir
+                        pytest -m "personal_info" --alluredir=%ALLURE_RESULTS%
+                    '''
                 }
             }
         }
@@ -33,10 +33,10 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 script {
-					bat '''
-						call %VENV_DIR%\\Scripts\\activate
-						allure generate %ALLURE_RESULTS% -o %ALLURE_REPORT% --clean
-					'''
+                    bat '''
+                        call %VENV_DIR%\\Scripts\\activate
+                        allure generate %ALLURE_RESULTS% -o %ALLURE_REPORT% --clean
+                    '''
                 }
             }
         }
