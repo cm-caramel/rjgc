@@ -18,19 +18,6 @@ pipeline {
             }
         }
 
-        stage('Set Up Python Environment') {
-            steps {
-                script {
-					bat '''
-						if not exist "%VENV_DIR%" (
-							python -m venv %VENV_DIR%
-						)
-						call %VENV_DIR%\\Scripts\\activate
-					'''
-                }
-            }
-        }
-
         stage('Run Tests with Pytest') {
             steps {
                 script {
