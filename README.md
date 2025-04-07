@@ -12,4 +12,4 @@ pip install requirements.txt
 pytest
 ```
 
-test-jenkins
+test-Jenkins
