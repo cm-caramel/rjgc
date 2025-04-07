@@ -12,4 +12,4 @@ pip install requirements.txt
 pytest
 ```
 
-test-run：12
+test-run：1
