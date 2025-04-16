@@ -1,4 +1,4 @@
-driver_path: 'chromedriver/chromedriver.exe'
+driver_path: 'BrowserDriver/chromedriver.exe'
 base_url: 'http://localhost/'
 wait_time: 10
 headless: True
