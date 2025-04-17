@@ -5,3 +5,4 @@ PyMySQL>=1.1.1
 DBUtils>=3.1.0
 allure-pytest>=2.14.0
 pytest-xdist>=3.6.1
+pytest-rerunfailures>=15.0

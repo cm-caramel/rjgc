@@ -22,8 +22,8 @@ teacher_account = {
         pytest.param(teacher_account)
     ], indirect=True)
 class TestTask:
-    @pytest.mark.test
-    @pytest.mark.parallel
+    # @pytest.mark.test
+    # @pytest.mark.parallel
     @allure.story('检查行政班')
     def test_class_check(self, request, course_page, db_conn):
         pass

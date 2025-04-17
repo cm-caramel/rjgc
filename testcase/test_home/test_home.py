@@ -9,6 +9,7 @@ login_account = {
 
 @allure.epic('软件工程导论实践教学管理平台')
 @allure.feature('首页')
+@allure.story('首页')
 @pytest.mark.parametrize("home_page", [
         pytest.param(login_account)
     ], indirect=True)

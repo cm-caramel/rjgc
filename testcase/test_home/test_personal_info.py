@@ -11,7 +11,8 @@ login_account = {
 
 # 首页上方菜单-个人信息弹窗
 @allure.epic('软件工程导论实践教学管理平台')
-@allure.feature('首页上方菜单-个人信息弹窗')
+@allure.feature('首页')
+@allure.story('个人信息弹窗')
 @pytest.mark.parametrize("home_page", [
         pytest.param(login_account)
     ], indirect=True)
