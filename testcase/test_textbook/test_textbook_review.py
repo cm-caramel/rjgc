@@ -17,6 +17,7 @@ login_account = {
     pytest.param(login_account)
 ], indirect=True)
 class TestTextbookReview:
+    @pytest.mark.textbook
     @pytest.mark.resource_review
     @pytest.mark.serial
     @pytest.mark.parametrize("datas", ['确认', '否决', '返回'])
@@ -92,6 +93,7 @@ class TestTextbookReview:
             screenshot(textbook_page.driver)
             raise e
 
+    @pytest.mark.textbook
     @pytest.mark.resource_review
     @pytest.mark.serial
     @pytest.mark.parametrize("datas", ['确认', '否决', '返回'])
@@ -170,6 +172,7 @@ class TestTextbookReview:
             screenshot(textbook_page.driver)
             raise e
 
+    @pytest.mark.textbook
     @pytest.mark.resource_review
     @pytest.mark.serial
     @pytest.mark.parametrize("datas", ['确认', '否决', '返回'])
@@ -245,6 +248,7 @@ class TestTextbookReview:
             screenshot(textbook_page.driver)
             raise e
 
+    @pytest.mark.textbook
     @pytest.mark.resource_review
     @pytest.mark.serial
     @pytest.mark.parametrize("datas", ['确认', '否决', '返回'])
@@ -321,6 +325,7 @@ class TestTextbookReview:
             screenshot(textbook_page.driver)
             raise e
 
+    @pytest.mark.textbook
     @pytest.mark.resource_review
     @pytest.mark.serial
     def test_delete_textbook_unordered(self, textbook_page):

@@ -1,7 +1,7 @@
-import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from page.base_page import BasePage
+from common.utils import *
 
 
 # 教材章节页
@@ -14,14 +14,12 @@ class TextbookPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        from page.top_side_bar import TopSideBar
+        from page.home.top_side_bar import TopSideBar
         self.top_side_bar = TopSideBar(driver)
 
     @allure.step('验证当前页面为教材章节页')
     def verify_page(self):
-        t1 = self.find_element(EC.visibility_of_element_located, self.PARENT_TITLE).text
-        t2 = self.find_element(EC.visibility_of_element_located, self.TITLE).text
-        return t1 == '教材管理' and t2 == '教材章节'
+        return self.waiter.until(EC.url_to_be(conf['base_url'] + 'text'))
 
     @allure.step('点击编辑模式')
     def click_edit_mode(self):

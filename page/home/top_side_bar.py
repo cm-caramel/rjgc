@@ -46,7 +46,7 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.MENU_BTN).click()
         self.find_element(EC.visibility_of_element_located, self.PERSONAL_INFO).click()
-        from page.personal_info_page import PersonalInfoPage
+        from page.home.personal_info_page import PersonalInfoPage
         return PersonalInfoPage(self.driver)
 
     @allure.step('点击修改密码')
@@ -55,7 +55,7 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.MENU_BTN).click()
         self.find_element(EC.visibility_of_element_located, self.CHANGE_PWD).click()
-        from page.change_pwd_page import ChangePwdPage
+        from page.home.change_pwd_page import ChangePwdPage
         return ChangePwdPage(self.driver)
 
     @allure.step('点击安全退出')
@@ -64,7 +64,7 @@ class TopSideBar(BasePage):
         if not el.is_displayed():
             self.find_element(EC.visibility_of_element_located, self.MENU_BTN).click()
         self.find_element(EC.visibility_of_element_located, self.LOGOUT).click()
-        from page.login_page import LoginPage
+        from page.login.login_page import LoginPage
         return LoginPage(self.driver)
 
     @staticmethod
@@ -78,7 +78,7 @@ class TopSideBar(BasePage):
     @allure.step('通过左侧栏切换到首页')
     def switch_to_home(self):
         self.find_element(EC.visibility_of_element_located, self.get_left_item_xpath('首页')).click()
-        from page.home_page import HomePage
+        from page.home.home_page import HomePage
         return HomePage(self.driver)
 
     @allure.step('通过左侧栏切换到教材章节')

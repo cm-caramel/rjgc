@@ -18,7 +18,7 @@ class ProjectReviewPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        from page.top_side_bar import TopSideBar
+        from page.home.top_side_bar import TopSideBar
         self.top_side_bar = TopSideBar(driver)
 
     @allure.step('验证当前为项目审核页')

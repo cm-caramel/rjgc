@@ -6,7 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from common.utils import conf
 from page.base_page import BasePage
-from page.home_page import HomePage
+from page.home.home_page import HomePage
 
 
 # 登录页面

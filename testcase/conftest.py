@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from common.db_conn_pool import DBConnPool
 from common.utils import *
-from page.login_page import LoginPage
+from page.login.login_page import LoginPage
 from common.exceptions import *
 
 '''
