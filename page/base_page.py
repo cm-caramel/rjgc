@@ -16,16 +16,24 @@ class BasePage:
         self.waiter = WebDriverWait(self.driver, conf['wait_time'])
 
     def find_element(self, condition, locator):
-        try:
-            return self.waiter.until(condition(locator))
-        except Exception as e:
-            raise TechnicalException(f'\n\n元素定位失败，\n{condition}\n{locator}\n{str(e)}') from e
+        for i in range(3):
+            try:
+                return self.waiter.until(condition(locator))
+            except Exception as e:
+                if i == 2:
+                    raise TechnicalException(f'\n\n元素定位失败，\n{condition}\n{locator}\n{str(e)}') from e
+                else:
+                    time.sleep(1)
 
     def find_element_by_parent(self, parent, condition, locator):
-        try:
-            return WebDriverWait(parent, conf['wait_time']).until(condition(locator))
-        except Exception as e:
-            raise TechnicalException(f'\n\n在父元素内定位子元素失败，\n{condition}\n{locator}\n{str(e)}') from e
+        for i in range(3):
+            try:
+                return WebDriverWait(parent, conf['wait_time']).until(condition(locator))
+            except Exception as e:
+                if i == 2:
+                    raise TechnicalException(f'\n\n元素定位失败，\n{condition}\n{locator}\n{str(e)}') from e
+                else:
+                    time.sleep(1)
 
     # 点击element所在的地方，x/y是offset。因为有些元素是不可点击的，所以直接用ActionChains来操作
     def click_element_position(self, condition, locator, x=0, y=0):
