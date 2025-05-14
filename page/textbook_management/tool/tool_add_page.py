@@ -15,6 +15,15 @@ class ToolAddPage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
+    @allure.step('检查窗口打开状态')
+    def is_visible(self):
+        el = self.find_element(EC.presence_of_element_located, (By.XPATH, '//body'))
+        if el.get_attribute('class') != 'el-popup-parent--hidden':
+            return False
+        if self.find_element(EC.presence_of_element_located, '//*[@id="app"]//div[@class="tooladdbox"]'):
+            return True
+        return False
+
     @allure.step('输入工具种类名称')
     def input_kind_name(self, name):
         el = self.find_element(EC.visibility_of_element_located, self.KIND_INPUT)

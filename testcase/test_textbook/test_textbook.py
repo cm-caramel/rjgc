@@ -357,16 +357,18 @@ class TestDeleteChapter:
             title = book.split(' ', 1)[1]
             edit_mode = textbook_page.click_edit_mode()
             assert edit_mode.verify_page()
-            with allure.step('删除最后一个章节'):
+            with allure.step('点击删除最后一个章节'):
                 delete_page = edit_mode.click_delete_btn(label, title)
             with allure.step('检查章节信息'):
                 assert delete_page.get_textbook_title() == title
                 assert delete_page.get_textbook_label() == label
-            delete_page.click_outside_close()
-            edit_mode.click_delete_btn(label, title)
-            delete_page.click_return_btn()
-            edit_mode.click_delete_btn(label, title)
+            with allure.step('点击外部空白处关闭弹窗'):
+                delete_page.click_outside_close()
+            with allure.step('点击返回关闭弹窗'):
+                edit_mode.click_delete_btn(label, title)
+                delete_page.click_return_btn()
             with allure.step('点击删除按钮'):
+                edit_mode.click_delete_btn(label, title)
                 delete_page.click_delete_btn()
                 assert delete_page.get_el_alert_text() == '删除请求已成功发送，请耐心等待审核！'
                 delete_page.close_if_open()

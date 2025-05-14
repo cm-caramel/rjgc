@@ -1,3 +1,5 @@
+import allure
+
 from page.home.top_side_bar import TopSideBar
 from common.utils import *
 
@@ -77,9 +79,11 @@ class TestPersonalInfo:
                 personal_info_page.input_user_sex('男')
                 personal_info_page.input_user_tel('123')
                 personal_info_page.input_user_email('123@qq.com')
-            personal_info_page.click_outside_close()
-            bar = TopSideBar(personal_info_page.driver)
-            self.review_edit(bar, db_conn, sex, tel, email)
+            with allure.step('点击外部空白处关闭弹窗'):
+                personal_info_page.click_outside_close()
+            with allure.step('再次打开弹窗，校验数据修改情况'):
+                bar = TopSideBar(personal_info_page.driver)
+                self.review_edit(bar, db_conn, sex, tel, email)
         except Exception as e:
             screenshot(personal_info_page.driver)
             raise e
@@ -110,10 +114,10 @@ class TestPersonalInfo:
                 personal_info_page.click_save_btn()
                 bar = TopSideBar(personal_info_page.driver)
             if datas.get('success'):
-                with allure.step('修改数据，提示修改成功'):
+                with allure.step('提示修改成功'):
                     assert personal_info_page.get_el_alert_text() == '个人信息修改成功！'
             else:
-                with allure.step(f'不修改数据，提示"{datas.get("error")}"'):
+                with allure.step(f'提示"{datas.get("error")}"'):
                     assert personal_info_page.get_el_alert_text() == datas.get('error')
             self.review_edit(bar, db_conn, sex, tel, email)
         except Exception as e:

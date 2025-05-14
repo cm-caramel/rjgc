@@ -1,7 +1,3 @@
-import time
-
-import allure
-
 from common.utils import *
 
 super_account = {
@@ -94,8 +90,9 @@ class TestDiscuss:
         try:
             allure.dynamic.description(f'前置条件：\n1. 登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            detail_page = tool_page_function.click_tool_by_index(0)
-            with allure.step('点击右侧目录切换工具'):
+            with allure.step('点击第一个工具'):
+                detail_page = tool_page_function.click_tool_by_index(0)
+            with allure.step('点击右侧目录切换到第二个工具'):
                 detail_page.click_catalog_by_index(1)
             with allure.step('检查切换后的评论信息'):
                 assert detail_page.get_all_discuss_info() == []
@@ -122,7 +119,8 @@ class TestDiscuss:
             allure.dynamic.title(f'新建评论-{role}')
             allure.dynamic.description(f'前置条件：\n1. {role}登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            detail_page = tool_page_function.click_tool_by_index(0)
+            with allure.step('点击第一个工具'):
+                detail_page = tool_page_function.click_tool_by_index(0)
             with db_conn.cursor() as cursor:
                 cursor.execute(f"select * from v_user "
                                f"where SCHOOL_NAME = '{param['school']}' and USER_ACCOUNT = '{param['user']}'")
@@ -159,7 +157,8 @@ class TestDiscuss:
         try:
             allure.dynamic.description(f'前置条件：\n1. 登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            detail_page = tool_page_function.click_tool_by_index(0)
+            with allure.step('点击第一个工具'):
+                detail_page = tool_page_function.click_tool_by_index(0)
             with allure.step('获取排序前的第一条评论'):
                 first_discuss = detail_page.get_all_discuss_info()[0]
                 first_user = first_discuss['user']
@@ -192,8 +191,9 @@ class TestDiscuss:
             allure.dynamic.title(f'点赞评论-{role}')
             allure.dynamic.description(f'前置条件：\n1. {role}登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            detail_page = tool_page_function.click_tool_by_index(0)
-            with allure.step('获取第一条评论信息'):
+            with allure.step('点击第一个工具'):
+                detail_page = tool_page_function.click_tool_by_index(0)
+            with allure.step('获取第一条评论的信息'):
                 first_discuss = detail_page.get_all_discuss_info()[0]
                 first_content = first_discuss['content']
             with allure.step('点赞第一条评论'):
@@ -237,13 +237,14 @@ class TestDiscuss:
             allure.dynamic.title(f'删除评论-{role}')
             allure.dynamic.description(f'前置条件：\n1. {role}登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            detail_page = tool_page_function.click_tool_by_index(0)
+            with allure.step('点击第一个工具'):
+                detail_page = tool_page_function.click_tool_by_index(0)
             with db_conn.cursor() as cursor:
                 cursor.execute(f"select * from v_user "
                                f"where SCHOOL_NAME = '{param['school']}' and USER_ACCOUNT = '{param['user']}'")
                 res = cursor.fetchone()
             user_name = res.get('USER_NAME')
-            with allure.step('检查删除按钮显示'):
+            with allure.step('检查删除按钮是否显示'):
                 infos = detail_page.get_all_discuss_info()
                 cnt = len(infos)
                 print(infos)
@@ -258,7 +259,7 @@ class TestDiscuss:
                         else:
                             assert not info.get('has_del_btn')
             if infos[0].get('has_del_btn'):
-                with allure.step('删除第一条评论'):
+                with allure.step('点击删除第一条评论'):
                     detail_page.click_discuss_del_btn(0)
                     assert detail_page.get_el_alert_text() == '评论删除成功'
                     assert len(detail_page.get_all_discuss_info()) == cnt - 1
@@ -289,11 +290,11 @@ class TestToolAdd:
             allure.dynamic.title(f'新增分类-{role}')
             allure.dynamic.description(f'前置条件：\n1. {role}登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            with allure.step('新增分类'):
+            with allure.step('点击新增分类'):
                 edit_mode = tool_page_function.click_edit_mode()
                 add_page = edit_mode.click_add_kind()
                 add_page.input_kind_name('新增分类test')
-            with allure.step('点击确认'):
+            with allure.step('点击确认，关闭窗口'):
                 add_page.click_confirm_btn()
                 try:
                     assert tool_page_function.get_el_alert_text() == '新增分类已成功发送请求，请耐心等待审核！'
@@ -330,13 +331,14 @@ class TestToolAdd:
             allure.dynamic.title(f'取消新增分类')
             allure.dynamic.description(f'前置条件：\n1. 登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            with allure.step('新增分类'):
+            with allure.step('点击新增分类'):
                 edit_mode = tool_page_function.click_edit_mode()
                 add_page = edit_mode.click_add_kind()
                 add_page.input_kind_name('取消新增分类test')
-            with allure.step('点击返回'):
+            with allure.step('点击返回，关闭窗口'):
                 add_page.click_return_btn()
-            with allure.step('检查请求记录'):
+                assert add_page.is_visible() is False
+            with allure.step('进入审核页面，检查请求记录'):
                 review_page = tool_page_function.top_side_bar.switch_to_resource_review()
                 review_page.switch_to_tool_review()
                 assert review_page.get_last_record_tool_title() != '取消新增分类test'
@@ -354,17 +356,17 @@ class TestToolAdd:
             allure.dynamic.title(f'新增空分类')
             allure.dynamic.description(f'前置条件：\n1. 登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            with allure.step('新增分类，输入为空'):
+            with allure.step('点击新增分类，输入名称为空'):
                 edit_mode = tool_page_function.click_edit_mode()
                 add_page = edit_mode.click_add_kind()
                 add_page.input_kind_name('')
-            with allure.step('点击确认'):
+            with allure.step('点击确认，关闭窗口'):
                 add_page.click_confirm_btn()
                 try:
                     assert tool_page_function.get_el_alert_text() == '新增分类已成功发送请求，请耐心等待审核！'
                 except Exception as e:
                     screenshot(tool_page_function.driver)
-            with allure.step('检查请求记录'):
+            with allure.step('进入审核页面，检查请求记录'):
                 review_page = tool_page_function.top_side_bar.switch_to_resource_review()
                 review_page.switch_to_tool_review()
                 review_page.switch_to_last_page()
@@ -392,7 +394,7 @@ class TestToolDelete:
             allure.dynamic.title(f'删除分类-{role}')
             allure.dynamic.description(f'前置条件：\n1. {role}登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            with allure.step('删除最后一个分类'):
+            with allure.step('点击删除最后一个分类'):
                 tools = tool_page_function.get_all_tool()
                 edit_mode = tool_page_function.click_edit_mode()
                 del_page = edit_mode.click_delete_btn_by_index(-1)
@@ -452,11 +454,11 @@ class TestToolEdit:
             allure.dynamic.title(f'修改工具-{role}')
             allure.dynamic.description(f'前置条件：\n1. {role}登录后点击教材管理-工具列表')
             assert tool_page_function.verify_page()
-            with allure.step('修改最后一个分类'):
+            with allure.step('点击修改最后一个工具'):
                 last_title = tool_page_function.get_all_tool()[-1]
                 edit_mode = tool_page_function.click_edit_mode()
                 edit_page = edit_mode.click_edit_btn_by_index(-1)
-            with allure.step('检查详情页信息'):
+            with allure.step('检查修改详情页的信息'):
                 assert edit_page.get_tool_kind() == last_title
                 assert edit_page.get_opt_kind() == '修改'
             with allure.step('修改工具，点击返回'):
